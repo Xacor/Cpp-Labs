@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <bitset>
 #include <limits>
+#include <float.h>
 
 int main() {
 
@@ -30,8 +31,8 @@ int main() {
         << " max long long=" << LLONG_MAX << ','
         << " size of long long=" << sizeof(long long) << std::endl
 
-        << "min double=" << std::numeric_limits<double>::min() << ','
-        << " max double=" << std::numeric_limits<double>::max() << ','
+        << "min double=" << DBL_MIN << ','
+        << " max double=" << DBL_MAX << ','
         << " size of double=" << sizeof(double) << std::endl
 
         << "min char=" << CHAR_MIN << ','
