@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+Lab1/.vs/Lab1/v16/.suo
+Lab1/.vs/Lab1/v16/Browse.VC.db
+*.ilk
+*.pdb
+Lab1/.vs/Lab1/v16/.suo
+*.recipe
+*.log
+*.tlog
+*.idb
