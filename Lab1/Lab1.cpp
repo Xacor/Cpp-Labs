@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include <bitset>
 #include <limits>
-#include <float.h>
 
 int main() {
 
@@ -57,17 +56,17 @@ int main() {
     std::cout << "char " << static_cast<char>(n) << std::endl;
 
     std::cout << "4.\nВведите коэффициенты a * x = b: ";
-    float a, b;
+    int a, b;
     std::cin >> a >> b;
 
     std::cout << "x = " << b << '/' << a << std::endl;
-    std::cout << "x = " << b/a << std::endl;
-    std::cout << "Ответ: " << b/a << std::endl;
+    std::cout << "x = " << double(b)/a << std::endl;
+    std::cout << "Ответ: " << double(b)/a << std::endl;
 
     std::cout << "5.\nВведите координаты отрезка на прямой: ";
-    float x1, x2;
+    int x1, x2;
     std::cin >> x1 >> x2;
-    std::cout << "Середина отрезка находится в точке с координатой " << (x2 + x1) / 2 << std::endl;
+    std::cout << "Середина отрезка находится в точке с координатой " << (x1 + x2) / 2. << std::endl;
 
     return 0;
 }

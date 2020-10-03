@@ -39,3 +39,9 @@ Lab1/.vs/Lab1/v16/.suo
 *.log
 *.tlog
 *.idb
+*.sqlite
+*.json
+.vs/Ryabov_Konstantin_201-351/v16/.suo
+*.db
+*.ipch
+*.db
