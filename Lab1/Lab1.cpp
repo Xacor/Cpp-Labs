@@ -48,8 +48,6 @@ int main() {
     std::cin >> n;
 
     std::cout << "В бинарном виде " << std::bitset<16>(n) << std::endl;
-
-
     std::cout << "В шестнадцатиричном виде " << std::hex << n << std::endl;
     std::cout << "bool " << bool(n) << std::endl;
     std::cout << "double " << double(n) << std::endl;
@@ -66,7 +64,7 @@ int main() {
     std::cout << "5.\nВведите координаты отрезка на прямой: ";
     int x1, x2;
     std::cin >> x1 >> x2;
-    std::cout << "Середина отрезка находится в точке с координатой " << (x1 + x2) / 2. << std::endl;
+    std::cout << "Середина отрезка:" << (x1 + x2) / 2.;
 
     return 0;
 }
