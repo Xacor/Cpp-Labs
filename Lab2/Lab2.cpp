@@ -16,7 +16,7 @@ void task1() {
 double benom(int n, int k)
 {
 	if (k > n / 2)
-		k = n - k; // возьмем минимальное из k, n-k.. В силу симметричности C(n,k)=C(n,n-k)
+		k = n - k; //C(n,k)=C(n,n-k)
 	if (k == 1)
 		return n;
 	if (k == 0)
