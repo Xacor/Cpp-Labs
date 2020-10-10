@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <string>
+#include <cmath>
 
 void task1() {
 	int n;
