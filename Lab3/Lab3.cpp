@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-const size_t len = 10;
+const size_t len = 1000;
 void BoubleSort(int* arr, const size_t len) {
     for (int i = 0; i < len; i++) {
         for (int j = 0; j < len - i - 1; j++) {
@@ -86,8 +86,6 @@ void MergeSort(int arr[], const int left,const int right) {
         Merge(arr, left, mid, right);
     }
 }
-
-
 
 int main() {
     setlocale(LC_ALL, "Russian");
