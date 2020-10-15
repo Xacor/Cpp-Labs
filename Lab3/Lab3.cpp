@@ -97,7 +97,6 @@ int main() {
             << "3.Числовой массив сортировка слиянием\n"
             << "4.Выход\n";
         std::cin >> cmd;
-        const int len = 10;
         int arr[len];
         
         if (cmd == 1) {
