@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 
-const size_t len = 1000;
+const size_t len = 10;
+
 void BoubleSort(int* arr, const size_t len) {
     for (int i = 0; i < len; i++) {
         for (int j = 0; j < len - i - 1; j++) {
@@ -22,21 +23,26 @@ void PrintArray(T* arr, const size_t len) {
 }
 
 void CountSort(char* arr, const size_t len) {
-    const int k = 123;
-    int c[k] = { 0 };
+    const int k = 26;
+    int counter[k] = { 0 };
     for (int i = 0; i < len; i++) {
-        c[int(arr[i])]++;
+        counter[int(arr[i]-'a')]++;
     }
     int pos = 0;
-    for (int i = 0; i < k; i++) {
-        for (int j = 0; j < c[i]; j++) {
-            arr[pos] = i;
+    int j = 0;
+    while (j <= k) {
+        if (counter[j] > 0) {
+            arr[pos] = char(int('a') + j);
             pos++;
-            }
+            counter[j]--;
+        } 
+        else {
+            j++;
+        }
     }
 }
 
-void Merge(int arr[],const int left, const int mid, const int right) {
+void Merge(int arr[], const int left, const int mid, const int right) {
     const int size1 = mid - left + 1;
     const int size2 = right - mid;
     int up[len/2], down[len-len/2];
@@ -97,7 +103,6 @@ int main() {
             << "3.Числовой массив сортировка слиянием\n"
             << "4.Выход\n";
         std::cin >> cmd;
-        int arr[len];
         
         if (cmd == 1) {
 
