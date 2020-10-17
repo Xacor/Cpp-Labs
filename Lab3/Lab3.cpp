@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 
-const size_t len = 10;
+const size_t len = 1000;
 
 void BoubleSort(int* arr, const size_t len) {
     for (int i = 0; i < len; i++) {
@@ -15,8 +15,8 @@ void BoubleSort(int* arr, const size_t len) {
 }
 
 template < typename T >
-void PrintArray(T* arr, const size_t len) {
-    for (int i = 0; i < len; i++) {
+void PrintArray(T* arr, const size_t n) {
+    for (int i = len - n; i < len; i++) {
         std::cout << arr[i] << " ";
     }
     std::cout << std::endl;
@@ -83,7 +83,7 @@ void Merge(int arr[], const int left, const int mid, const int right) {
     }
 }
 
-void MergeSort(int arr[], const int left,const int right) {
+void MergeSort(int arr[], const int left, const int right) {
     if (left < right) {
         int mid = (left + right) / 2;
         MergeSort(arr, left, mid);
@@ -98,43 +98,53 @@ int main() {
     while (1) {
         int cmd;
         std::cout << "Выберите команду:\n"
-            << "1.Числовой массив\n"
-            << "2.Символьный массив\n"
-            << "3.Числовой массив сортировка слиянием\n"
+            << "1.Сортировка пузырьком\n"
+            << "2.Сортировка подсчетом\n"
+            << "3.Сортировка слиянием\n"
             << "4.Выход\n";
         std::cin >> cmd;
         
+       
         if (cmd == 1) {
+            int n = 0;
+            std::cout << "Размер массива: ";
+            std::cin >> n;
 
             int arr[len] = { 0 };
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < n; i++) {
                 std::cin >> arr[i];
             }
 
             BoubleSort(arr, len);
-            PrintArray(arr, len);
+            PrintArray(arr, n);
         }
         
         if (cmd == 2) {
-            
-            char arr[len] = { 0 };
-            for (int i = 0; i < len; i++) {
+            int n = 0;
+            std::cout << "Размер массива: ";
+            std::cin >> n;
+
+            char arr[len] = { ' ' };
+            for (int i = 0; i < n; i++) {
                 std::cin >> arr[i];
             }
 
             CountSort(arr, len);
-            PrintArray(arr, len);
+            PrintArray(arr, n);
         }
         
         if (cmd == 3) {
-            
+            int n = 0;
+            std::cout << "Размер массива: ";
+            std::cin >> n;
+
             int arr[len] = { 0 };
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < n; i++) {
                 std::cin >> arr[i];
             }
 
             MergeSort(arr, 0, len-1);
-            PrintArray(arr, len);
+            PrintArray(arr, n);
         }
 
         if (cmd == 4) {
