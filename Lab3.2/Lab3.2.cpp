@@ -16,12 +16,10 @@ int main()
         int cmd;
         std::cin >> cmd;
 
-
         switch (cmd) {
         case 1:
             SetArray(arr, &length);
             break;
-        
         case 2:
             PrintArray(arr, &length);
             break;
@@ -33,8 +31,7 @@ int main()
             break;
         case 5:
             delete[] arr;
-            return 0;
-        
+            return 0;       
         default:
             break;
         }

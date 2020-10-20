@@ -26,7 +26,7 @@ void CountSort(char* arr, const size_t len) {
     const int k = 26;
     int counter[k] = { 0 };
     for (int i = 0; i < len; i++) {
-        counter[int(arr[i]-'a')]++;
+        counter[int(arr[i] - 'a')]++;
     }
     int pos = 0;
     int j = 0;
@@ -35,7 +35,7 @@ void CountSort(char* arr, const size_t len) {
             arr[pos] = char(int('a') + j);
             pos++;
             counter[j]--;
-        } 
+        }
         else {
             j++;
         }
@@ -45,7 +45,7 @@ void CountSort(char* arr, const size_t len) {
 void Merge(int arr[], const int left, const int mid, const int right) {
     const int size1 = mid - left + 1;
     const int size2 = right - mid;
-    int up[len/2], down[len-len/2];
+    int up[len / 2], down[len - len / 2];
 
     for (int i = 0; i < size1; i++) {
         up[i] = arr[left + i];
@@ -61,7 +61,7 @@ void Merge(int arr[], const int left, const int mid, const int right) {
     while (i < size1 && j < size2) {
         if (up[i] <= down[j]) {
             arr[k] = up[i];
-            i++ ;
+            i++;
         }
         else {
             arr[k] = down[j];
@@ -103,8 +103,8 @@ int main() {
             << "3.Сортировка слиянием\n"
             << "4.Выход\n";
         std::cin >> cmd;
-        
-       
+
+
         if (cmd == 1) {
             int n = 0;
             std::cout << "Размер массива: ";
@@ -118,7 +118,7 @@ int main() {
             BoubleSort(arr, len);
             PrintArray(arr, n);
         }
-        
+
         if (cmd == 2) {
             int n = 0;
             std::cout << "Размер массива: ";
@@ -132,7 +132,7 @@ int main() {
             CountSort(arr, len);
             PrintArray(arr, n);
         }
-        
+
         if (cmd == 3) {
             int n = 0;
             std::cout << "Размер массива: ";
@@ -143,7 +143,7 @@ int main() {
                 std::cin >> arr[i];
             }
 
-            MergeSort(arr, 0, len-1);
+            MergeSort(arr, 0, len - 1);
             PrintArray(arr, n);
         }
 
