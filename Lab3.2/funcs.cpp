@@ -6,7 +6,7 @@
 void SetArray(int*& arr, size_t* length) {
 	if (arr != nullptr) delete[] arr;
 
-	std::cout << "Array size: ";
+	std::cout << "Размер массива: ";
 	std::cin >> *length;
 	arr = new int[*length];
 	std::random_device rd;		// non-deterministic generator
@@ -25,7 +25,7 @@ void PrintArray(const int* arr, const size_t* length) {
 	std::cout << std::endl << std::endl;
 }
 
-int DigitSum(int* n) {	//считает сумму цифр, стоящих на четных разрядах
+int DigitSum(const int* n) {	//считает сумму цифр, стоящих на четных разрядах
 	int result = 0;
 	int buff = *n;
 	int k = 0;			//кол-во разрядов в числе n
@@ -34,7 +34,7 @@ int DigitSum(int* n) {	//считает сумму цифр, стоящих на четных разрядах
 		k++;
 	}
 
-	for (int i = 1; i < k; i += 2) {				//получаем цифру стоящую в i+1 разряде и прибавляем её 
+	for (int i = 1; i < k; i += 2) {				//получаем цифру стоящую в i разряде и прибавляем её 
 		result += (*n / int(pow(10, i))) % 10;		//pow(10,i) возводит 10 в степень i
 	}
 	return result;
