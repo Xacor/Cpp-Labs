@@ -1,100 +1,96 @@
 #include "functions.h"
 #include <cstring>
 #include <iostream>
-#include <algorithm>
 
-void SetString(char*& str, size_t* length) {				//функция ввода строки
-	if (str != nullptr) delete[] str;						//очистка памяти
-
-	std::cout << "Размер строки: ";
-	std::cin >> *length;
-	str = new char[*length+1];
-	std::cin.ignore();										//пропускаем символ конца ввода
-	std::cin.getline(str, *length+1);
-}
-
-void AllTolower(char* str) {								//переводит все символы в нижний регистр
-	for (int i = 0; i < strlen(str); i++) {
-		str[i] = tolower(str[i]);
-	}
-}
-
-void EraseSpace(char*& str) {						//удаляет пробелы из строки и сдвигает строку влево, уменьшая её размер
-	size_t len = strlen(str);						//двигаем null справа налево уменьшая размер
-	for (int i = 0; i < len; i++) {
-		if (isspace(str[i])) {
-			for (int j = i; j < len; j++) {
-				str[j] = str[j + 1];
-			}
-		}
-	}
-}
 
 bool IsPalindrome(char* str) {								//функция проверки на палиндром
-	EraseSpace(str);										//удаляем все пробелы
-	AllTolower(str);										//переводи все в нижний регистр
-	size_t len = strlen(str);								//вычисляем длину получившейся строки 
-	
-	for (int i = 0; i < len / 2 + 1; i++) {
-		if (str[i] != str[len - i - 1])	return false;		//если не совпадает iый и iый с конца элемент, то строка не палиндром				
+	int len = strlen(str);									//вычисляем длину строки 
+
+	for (int i = 0, j = len-1; i < j; i++, j--) {
+		if (str[i] == ' ') i++;				
+		if (str[j] == ' ') j--;
+		if (isupper(str[i])) str[i] = tolower(str[i]);
+		if (isupper(str[j])) str[j] = tolower(str[j]);
+		if (str[i] != str[j]) return false;
 	}
-	return true;											//если дошли до конца, значит строка палиндром
+	return true;											
 }
 
-void CopyArr(int* dest,int length ,int* src) {				//функия копирования одного массива в другой
-	for (int j = 0; j < length; j++) {
-		dest[j] = src[j];
-	}
-}
 
-int* Find(const char* str, const char* substr) {
-	int len = strlen(str);							//длина строки
-	int sublen = strlen(substr);					//длина подстроки
-	int* result = nullptr;							//объявляю массив для результата
-	int ressize = 0;								//размер массива для результата
+
+int* FindSubstring2(const char* str, const char* substr) {
+	int buff[255] = { -1 };
+	int buff_size = 0;
+
+	int str_len = strlen(str);
+	int substr_len = strlen(substr);
+
 	int pos = 0;									//отвечает за кол-во подряд совпавших символов с подстрокой
-	for (int i = 0; i < len+1; i++) {				//проходим по всей строке
+	for (int i = 0; i < str_len + 1; i++) {			//проходим по всей строке
 		if (str[i] == substr[pos]) pos++;			//если нашли ещё один совпавший символ, увеличиваем счетчик на 1
-		else if (str[i] == substr[0]) pos = 1;		//если встретился первый символ из подстроки, присваиваем счетчику значение 1												
-		else pos = 0;								//если это не символ из подстроки, обнуляем счетчик
 
-		if (pos == sublen) {
-			
-			int* tmp = new int[ressize];			//создаю буферный массив, чтоб не потерять значения из result во время выделения памяти
-			CopyArr(tmp, ressize, result);
-			
-			ressize++;
-			result = new int[ressize];				//выделяю новую память под result
-			
-			CopyArr(result, ressize, tmp);
-			
-			result[ressize - 1] = i+1-sublen;		//записываю в result индекс начала вхождения подстроки
-			delete[] tmp;							//освобождаю память
-			pos = 0;
+		else if (str[i] == substr[0]) pos = 1;		//если встретился первый символ из подстроки, присваиваем счетчику значение 1												
+
+		else pos = 0;
+
+		if (pos == substr_len) {
+			buff[buff_size] = i - substr_len + 1;
+			buff_size++;
 		}
 	}
-	int* tmp = new int[ressize];
-	CopyArr(tmp, ressize, result);
-	
-	delete[] result;
-	ressize++;
-	result = new int[ressize];
-	
-	CopyArr(result, ressize, tmp);
-	result[ressize - 1] = -1;						//записываю -1 в конце result, чтобы знать когда остановиться в main
-	delete[] tmp;
+
+	int* result = new int[buff_size+1];
+	for (int i = 0; i < buff_size + 1; i++) {
+		result[i] = buff[i];
+	}
+	result[buff_size ] = -1;
+
 	return result;
 }
 
+int FindSubstring1(const char* str, const char* substr, int startposition) {
+	int str_len = strlen(str);
+	int substr_len = strlen(substr);
+
+	int pos = 0;
+	for (int i = startposition; i < str_len + 1; i++) {			//проходим по всей строке
+		if (str[i] == substr[pos]) pos++;						//если нашли ещё один совпавший символ, увеличиваем счетчик на 1
+
+		else if (str[i] == substr[0]) pos = 1;					//если встретился первый символ из подстроки, присваиваем счетчику значение 1												
+
+		else pos = 0;
+
+		if (pos == substr_len) {
+			return i - substr_len + 1;
+		}
+	}
+}
+
 void Encrypt(char* str, int key) {
-	char alphabet[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+	/*char alphabet[] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
 	char* begin = alphabet;										//указатель на начало алфавита
 	char* end = alphabet + sizeof(alphabet);					//указатель на конец алфавита
-	EraseSpace(str);
 	for (int i = 0; i < strlen(str); i++) {
-		char* ch = std::find(begin, end, str[i]);				
-		if (ch != end) 
-			str[i] = *(begin + (ch - begin + key) % sizeof(alphabet));
+
+		if (!isspace(str[i])) {
+
+			char* ch = std::find(begin, end, str[i]);
+
+				if (ch != end)
+				str[i] = *(begin + (ch - begin + key) % sizeof(alphabet));
+		}
+	}*/
+	int asccii_num = 0;										//хранит номер символа в таблице аски с учетом сдвига
+	int len = strlen(str);
+	for (int i = 0; i < len; i++) {
+		if (isspace(str[i])) {								//если пробел то пропускаем итерацию
+			continue;
+		}
+		asccii_num = int(str[i]) + key;
+		if (((asccii_num > 90) && (int(str[i]) <= 90))  || ((asccii_num > 122) && (int(str[i]) <= 122))) {
+			asccii_num -= 26;								//коррекция сдвига в английском алфавите
+		}
+		str[i] = char(asccii_num);							//ячейка массива присваивает новое значение
 	}
 }
 
