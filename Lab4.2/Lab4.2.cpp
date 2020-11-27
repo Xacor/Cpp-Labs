@@ -11,7 +11,7 @@ std::string file_format(const std::string file_path_full) {
 std::string file_name(const std::string file_path_full) {
     size_t left = file_path_full.rfind('\\');
     size_t right = file_path_full.rfind('.');
-    return file_path_full.substr(left, right);
+    return file_path_full.substr(left+1, right - left - 1);
 }
 
 std::string file_path(const std::string file_path_full) {
@@ -50,7 +50,7 @@ bool file_copy(const std::string file_path_full) {
         
         while (!src.eof()) {
             std::getline(src, line);
-            dest << line;
+            dest << line << std::endl;
         }
         dest.close();
         return true;

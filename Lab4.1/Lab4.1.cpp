@@ -66,17 +66,18 @@ int FindSubstring1(const char* str, const char* substr, int startposition) {
 }
 
 void Encrypt(char* str, int key) {
-	int asccii_num = 0;										//хранит номер символа в таблице аски с учетом сдвига
+	int asccii_num = 0;																		//хранит номер символа в таблице аски с учетом сдвига
 	int len = strlen(str);
 	for (int i = 0; i < len; i++) {
-		if (isspace(str[i])) {								//если пробел то пропускаем итерацию
-			continue;
-		}
+		if (isspace(str[i])) 
+			continue;																		//если пробел, то пропускаем итерацию
+		
 		asccii_num = int(str[i]) + key;
-		if (((asccii_num > 90) && (int(str[i]) <= 90)) || ((asccii_num > 122) && (int(str[i]) <= 122))) {
-			asccii_num -= 26;								//коррекция сдвига в английском алфавите
-		}
-		str[i] = char(asccii_num);							//ячейка массива присваивает новое значение
+		
+		if (((asccii_num > 90) && (int(str[i]) <= 90)) || ((asccii_num > 122) && (int(str[i]) <= 122))) 	//если вышли за конец алфавита, то возвращаемся в начало
+			asccii_num -= 26;																				//коррекция сдвига 
+		
+		str[i] = char(asccii_num);																			//ячейка массива принимает новое значение
 	}
 }
 
@@ -106,7 +107,6 @@ int main()
     char str[255] = {};
     char substr[255] = {};
     int* pointer = nullptr;
-	int* adr = pointer;
 
     while (1) {
         std::cout << "1. Проверка на палиндром\n"
@@ -138,6 +138,8 @@ int main()
             std::cin.getline(substr, 255);
 
             pointer = FindSubstring2(str, substr);
+			int* adr;																	//используется для очищения памяти
+			adr = pointer;
             while (*pointer != -1) {                                                      //вывод индексов начала вхождения
                 std::cout << *pointer << " ";
                 pointer++;
