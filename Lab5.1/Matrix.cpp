@@ -66,15 +66,20 @@ void Matrix::Input()
 
 void Matrix::Input(size_t row, size_t column)
 {
+	rows = row;
+	columns = column;
 	if (elements != nullptr)
 		delete[] elements;
 	elements = new double[row * column];
+
 	for (int i = 0; i < row * column; i++)
 		std::cin >> elements[i];
 }
 
 void Matrix::Input(size_t row, size_t column, const double* arr)
 {
+	rows = row;
+	columns = column;
 	if (elements != nullptr)
 		delete[] elements;
 	elements = new double[row * column];
@@ -193,16 +198,5 @@ Matrix& Matrix::operator= (const Matrix& right) {
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream& out, const Matrix& matr)
-{
-	out << "Rows = " << matr.rows << ' ' << "Columns = " << matr.columns << '\n';
-	for (int i = 0; i < matr.rows; i++) {
-		for (int j = 0; j < matr.columns; j++) {
-			out << matr.elements[i * matr.rows + j] << '\t';
-		}
-		out << '\n';
-	}
-	return out;
-}
 
 

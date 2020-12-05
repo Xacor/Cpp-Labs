@@ -38,7 +38,6 @@ public:
 
 	void Copy(Matrix* right);
 	Matrix& operator=(const Matrix& right);
-	friend std::ostream& operator<< (std::ostream& out, const Matrix& matr);
 	
 };
 

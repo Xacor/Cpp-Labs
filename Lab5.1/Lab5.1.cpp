@@ -6,31 +6,14 @@
 int main()
 {
 	Matrix matrA, matrB;
-	matrA.Input();
-	matrB.Input();
-
-	std::cout << matrA << '\n' << matrB << '\n';
-
-	double arr[4] = { 0, 1, 2, 3 };
-	Matrix mymatr(2, 2, arr);
-	std::cout << mymatr;
-
-	matrA.Mult(arr, 2, 2);
-	std::cout << matrA << '\n';
-
-	matrB.Sum(arr);
-	std::cout << matrB << '\n';
-	
-	matrA.MultByNum(2);
-	std::cout << "matrA * 2 \n" << matrA;
+	double arrA[] = { 1, 2, 3, 4, 5, 6};
+	double arrB[] = { 7, 8, 9, 1, 2, 3 };
+	matrA.Input(3, 2, arrA);
+	matrB.Input(2, 3, arrB);
 
 	matrA.Mult(&matrB);
-	std::cout << "matrA * matrB \n" << matrA;
-
-	matrA.Sum(&matrB);
-	std::cout << "matrA + matrB \n" << matrA;
-
-	std::cout << "matrA trace is " << matrA.Trace() << '\n';
+	matrA.Print();
+	
 	return 0;
 }
 
