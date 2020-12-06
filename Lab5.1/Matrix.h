@@ -36,7 +36,7 @@ public:
 	void Mult(const double* arr, size_t row, size_t col);
 	void MultByNum(double n);
 
-	void Copy(Matrix* right);
+	void Copy(const Matrix* right);
 	Matrix& operator=(const Matrix& right);
 	
 };

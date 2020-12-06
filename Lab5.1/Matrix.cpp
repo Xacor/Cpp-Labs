@@ -173,7 +173,7 @@ void Matrix::Mult(const double* arr, size_t row, size_t col)
 	*this = result;
 }
 
-void Matrix::Copy(Matrix* right)
+void Matrix::Copy(const Matrix* right)
 {
 	this->columns = right->columns;
 	this->rows = right->rows;

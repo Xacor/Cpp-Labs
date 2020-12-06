@@ -42,7 +42,6 @@ int Matrix3d::get_rows()
 	return this->rows;
 }
 
-
 void Matrix3d::Input()
 {
 	if (elements != nullptr)
@@ -183,5 +182,5 @@ Matrix3d operator*(const Matrix3d& left, const Matrix3d& right)
 		}
 	}
 
-	return left;
+	return result;
 }
