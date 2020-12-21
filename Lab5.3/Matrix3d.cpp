@@ -151,6 +151,8 @@ const Matrix3d operator-(const Matrix3d& matr)
 	return result;
 }
 
+
+
 Matrix3d& Matrix3d::operator= (const Matrix3d& right) {
 	//проверка на самоприсваивание
 	if (this == &right) {
@@ -181,6 +183,38 @@ Matrix3d operator*(const Matrix3d& left, const Matrix3d& right)
 			result.set_element(i, j, sum);
 		}
 	}
+
+	return result;
+}
+
+Matrix3d operator*(const Matrix3d& left, const int& right)
+{
+	Matrix3d result(left);
+
+	for (int i = 1; i < left.rows * left.rows; i += left.rows + 1)
+		result.elements[i] *= right;
+
+	for (int i = 0; i < left.rows * left.rows; i += left.rows + 1)
+		result.elements[i] *= right;
+
+	for (int i = left.rows; i < left.rows * left.rows; i += left.rows + 1)
+		result.elements[i] *= right;
+	
+	return result;
+}
+
+Matrix3d operator*(const int& left, const Matrix3d& right)
+{
+	Matrix3d result(right);
+
+	for (int i = 1; i < right.rows * right.rows; i += right.rows + 1)
+		result.elements[i] *= left;
+
+	for (int i = 0; i < right.rows * right.rows; i += right.rows + 1)
+		result.elements[i] *= left;
+
+	for (int i = right.rows; i < right.rows * right.rows; i += right.rows + 1)
+		result.elements[i] *= left;
 
 	return result;
 }

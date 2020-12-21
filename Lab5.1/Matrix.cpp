@@ -89,6 +89,7 @@ void Matrix::Input(size_t row, size_t column, const double* arr)
 
 void Matrix::Print()
 {
+	std::cout << "Rows = " << rows << ' ' << "Columns = " << columns << '\n';
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) 
 			std::cout << get_element(i, j) << '\t';
@@ -119,13 +120,15 @@ bool Matrix::Sum(const Matrix* matr)
 	return true;
 }
 
-void Matrix::Sum(const double* arr)
+bool Matrix::Sum(const double* arr, int row, int column )
 {
+	if (this->rows != row && this->columns != column)
+		return false;
 	for (int i = 0; i < this->columns * this->rows; i++) {
 		elements[i] += arr[i];
 	}
+	return true;
 }
-
 
 bool Matrix::Mult(const Matrix* matr)
 {
@@ -155,8 +158,11 @@ void Matrix::MultByNum(double n)
 		this->elements[i] *= n;
 }
 
-void Matrix::Mult(const double* arr, size_t row, size_t col)
+bool Matrix::Mult(const double* arr, size_t row, size_t col)
 {
+	if (this->columns != row)
+		return false;
+	
 	Matrix result(this->rows, col);
 	for (int i = 0; i < this->rows; i++) {
 		for (int j = 0; j < col; j++) {
@@ -171,6 +177,7 @@ void Matrix::Mult(const double* arr, size_t row, size_t col)
 	}
 
 	*this = result;
+	return true;
 }
 
 void Matrix::Copy(const Matrix* right)

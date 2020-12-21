@@ -28,12 +28,12 @@ public:
 	void Print();
 	
 	bool Sum(const Matrix* matr);
-	void Sum(const double* arr);
+	bool Sum(const double* arr, int row, int column);
 
 	double Trace();
 
 	bool Mult(const Matrix* matr);
-	void Mult(const double* arr, size_t row, size_t col);
+	bool Mult(const double* arr, size_t row, size_t col);
 	void MultByNum(double n);
 
 	void Copy(const Matrix* right);

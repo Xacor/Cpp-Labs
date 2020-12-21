@@ -1,6 +1,6 @@
 #include "CircleInSquare.h"
 
-CircleInSquare::CircleInSquare() : Position(), Circle(), Square()
+CircleInSquare::CircleInSquare() : Circle(), Square()
 {
 }
 

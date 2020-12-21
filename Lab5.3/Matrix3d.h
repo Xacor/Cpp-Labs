@@ -31,8 +31,11 @@ public:
 	friend Matrix3d operator-(const Matrix3d& left, const Matrix3d& right);
 	
 	friend Matrix3d operator*(const Matrix3d& left, const Matrix3d& right);
+	friend Matrix3d operator*(const Matrix3d& left, const int& right);
+	friend Matrix3d operator*(const int& left, const Matrix3d& right);
 
 	Matrix3d& operator=(const Matrix3d& right);
+	
 };
 
 const Matrix3d operator-(const Matrix3d& matr);
