@@ -24,17 +24,21 @@ int main()
             break;
 
         case ')':
-            if (st.top() == '(')
-                st.pop();
+            if (!st.empty()) {
+                if (st.top() == '(')
+                    st.pop();
+            }
             else {
                 std::cout << "Incorrect expression\n";
                 return 0;
-            }
+                }
             break;
             
         case ']':
-            if (st.top() == '[')
-                st.pop();
+            if (!st.empty()) {
+                if (st.top() == ']')
+                    st.pop();
+            }
             else {
                 std::cout << "Incorrect expression\n";
                 return 0;
@@ -42,8 +46,10 @@ int main()
             break;
 
         case '}':
-            if (st.top() == '{')
-                st.pop();
+            if (!st.empty()) {
+                if (st.top() == '}')
+                    st.pop();
+            }
             else {
                 std::cout << "Incorrect expression\n";
                 return 0;
