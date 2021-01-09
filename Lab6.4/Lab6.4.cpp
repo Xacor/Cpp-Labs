@@ -24,7 +24,7 @@ int main()
 			for (auto it = banset.begin(); it != banset.end(); it++) { //проверка на существование введенного id
 				std::pair<int, int> buf = *it;
 				if (buf.first == id) {
-					std::cout << "Try for this id already exists!\n";
+					std::cout << "Result for this id already exists!\n";
 					exists = true;
 					break;
 				}
@@ -35,8 +35,13 @@ int main()
 			break;
 
 		case 2:
-			for (auto it = banset.begin(); it != banset.end(); it++) //подсчет количества элементов
+			
+			for (auto it = banset.begin(); it != banset.end(); it++) { //подсчет количества элементов
 				k++;
+				std::cout.width(10);
+				std::cout.setf(std::ios::left);
+				std::cout << it->first << it->second << '\n';
+			}
 			std::cout << k << " results\n";
 			break;
 

@@ -31,6 +31,7 @@ int main()
 		if (prev_group != buf.first) {
 			std::cout << buf.first << '\t' << buf.second << '\n';
 			prev_group = buf.first;
+			
 		}
 		else {
 			std::cout << '\t' << buf.second << '\n';

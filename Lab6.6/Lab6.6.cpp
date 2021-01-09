@@ -21,7 +21,8 @@ int main()
 			std::for_each(word.begin(), word.end(), [](char& c) { //перевод всех слов в нижний регистр
 				c = ::tolower(c);
 				});
-
+			if (word.empty())
+				continue;
 			counter++;
 			if (stats.find(word) == stats.end()) { //проверка на вхождение
 				stats.insert({ word, 1 });
