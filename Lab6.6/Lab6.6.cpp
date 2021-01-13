@@ -18,11 +18,13 @@ int main()
 
 			if (std::ispunct(word[0])) word.erase(0, 1); //вырезание знаков препинания из начала слова
 			
-			std::for_each(word.begin(), word.end(), [](char& c) { //перевод всех слов в нижний регистр
-				c = ::tolower(c);
-				});
-			if (word.empty())
+			if (word.empty()) //
 				continue;
+
+			std::for_each(word.begin(), word.end(), [](char& c) { //перевод всех слов в нижний регистр
+				c = tolower(c);
+				});
+
 			counter++;
 			if (stats.find(word) == stats.end()) { //проверка на вхождение
 				stats.insert({ word, 1 });
