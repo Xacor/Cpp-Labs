@@ -45,4 +45,5 @@ int main()
 		std::cout << it->second / counter * 100 << "\%\n";		//вычисление процента
 
 	}
+	return 0;
 }

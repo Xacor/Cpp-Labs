@@ -33,9 +33,11 @@ int vect_mult(std::pair<int, int> a, std::pair<int, int> b, std::pair<int, int> 
 
 std::deque<std::pair<int, int>> Graham(std::vector<std::pair<int, int>> cords) { // вычисление оболочки
 	std::deque<std::pair<int, int>> shell;
+	
 	std::pair<int, int> p0 = *(std::min_element(cords.begin(), cords.end(), [](std::pair<int, int> a, std::pair<int, int> b) { //находим стартовую точку, самая нижня среди левых
 		return (a.first < b.first || (a.first == b.first && a.second < b.second)) ;
 		}));
+	
 	shell.push_back(p0); //добавление опорной точки в дек
 	cords.erase(std::find(cords.begin(), cords.end(), p0)); //удаление из исходного вектора для избежания повторений
 	
@@ -70,7 +72,7 @@ int main()
 	while (true) {
 		std::string str;
 		std::vector<std::pair<int, int>> cords; //vector пар, в которых первое значение - х, а второе - у
-		std::deque<std::pair<int, int>> shell;	//дек точек, входящих во внешнюю оболочку
+		std::deque<std::pair<int, int>> shell;	//дек 
 		int x, y = 0;
 		int n;
 		int cmd;

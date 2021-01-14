@@ -93,5 +93,5 @@ int main()
     for (int i = 0; i < f.size(); i++)
         std::cout << f[i] << ' ';
     std::cout << '\n';
-    
+    return 0;
 }

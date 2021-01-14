@@ -39,6 +39,6 @@ int main()
         if (x == q5.front())
             q5.pop();
     }
-   
+    return 0;
 }
 
