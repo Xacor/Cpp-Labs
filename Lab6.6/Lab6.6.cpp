@@ -18,19 +18,20 @@ int main()
 
 			if (std::ispunct(word[0])) word.erase(0, 1); //вырезание знаков препинания из начала слова
 			
-			if (word.empty()) //
+			if (word.empty()) //если образовалось пусток слово, то не учитываем (возможно при "-" в тексте)
 				continue;
 
-			std::for_each(word.begin(), word.end(), [](char& c) { //перевод всех слов в нижний регистр
+			std::for_each(word.begin(), word.end(), [](char& c) { //перевод всех букв слова в нижний регистр
 				c = tolower(c);
 				});
 
 			counter++;
+
 			if (stats.find(word) == stats.end()) { //проверка на вхождение
-				stats.insert({ word, 1 });
+				stats.insert({ word, 1 });		//вставка, если не слово до этого не встречалось
 			}
 			else {
-				stats[word]++;
+				stats[word]++;		//увеличение счетчика, если слово уже встречалось
 			}
 		}
 	}
@@ -38,10 +39,10 @@ int main()
 
 	std::cout << "Total amount: " << counter << '\n';
 	for (auto it = stats.begin(); it != stats.end(); it++) { //модификация потока вывода и вывод на печать
-		std::cout.width(20); 
-		std::cout.setf(std::ios::left);
+		std::cout.width(20);		//изменение ширины
+		std::cout.setf(std::ios::left);		//выравнивание по левому краю
 		std::cout << it->first;
-		std::cout << it->second / counter * 100 << "\%\n";
+		std::cout << it->second / counter * 100 << "\%\n";		//вычисление процента
 
 	}
 }

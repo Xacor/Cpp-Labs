@@ -1,5 +1,5 @@
 ﻿#include <set>
-#include <utility>
+#include <utility>		//std::pair, std::make_pair()
 #include <iostream>
 
 int main()
@@ -21,9 +21,8 @@ int main()
 		case 1:
 			std::cin >> id >> res;
 
-			for (auto it = banset.begin(); it != banset.end(); it++) { //проверка на существование введенного id
-				std::pair<int, int> buf = *it;
-				if (buf.first == id) {
+			for (auto it = banset.begin(); it != banset.end(); it++) { //итерирование по set
+				if (it->first == id) { //проверка на существование введенного id
 					std::cout << "Result for this id already exists!\n";
 					exists = true;
 					break;
@@ -38,8 +37,8 @@ int main()
 			
 			for (auto it = banset.begin(); it != banset.end(); it++) { //подсчет количества элементов
 				k++;
-				std::cout.width(10);
-				std::cout.setf(std::ios::left);
+				std::cout.width(6);	//изменение ширины 
+				std::cout.setf(std::ios::left); //выравнивание по левомо краю
 				std::cout << it->first << it->second << '\n';
 			}
 			std::cout << k << " results\n";

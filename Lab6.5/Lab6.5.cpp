@@ -1,8 +1,8 @@
 ﻿#include <list>
 #include <iostream>
-#include <fstream>
+#include <fstream>		//std::ifstream
 #include <string>
-#include <utility>
+#include <utility>		//std::pair, std::make_pair()
 
 
 int main()
@@ -29,12 +29,12 @@ int main()
 	for (auto it = students.begin(); it != students.end(); it++) { //вывод по группам
 		std::pair<int, std::string> buf = *it;
 		if (prev_group != buf.first) {
-			std::cout << buf.first << '\t' << buf.second << '\n';
+			std::cout << buf.first << "\t\t" << buf.second << '\n';
 			prev_group = buf.first;
 			
 		}
 		else {
-			std::cout << '\t' << buf.second << '\n';
+			std::cout << "\t\t" << buf.second << '\n';
 		}
 	}
 	return 0;

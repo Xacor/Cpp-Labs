@@ -2,3 +2,5 @@
 201352 Zmiev
 201351 Nikolaev
 201352 Grebennikov
+11100 Ivanov
+11100 Petrov

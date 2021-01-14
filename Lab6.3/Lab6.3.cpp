@@ -1,11 +1,11 @@
 ﻿#include <iostream>
 #include <queue>
-#include <algorithm>
+#include <algorithm>    //std::min()
 
 
 
 
-void print_and_add(int t, std::queue<int>& q2, std::queue<int>& q3, std::queue<int>& q5) {
+void print_and_add(int t, std::queue<int>& q2, std::queue<int>& q3, std::queue<int>& q5) { //выводит на печать t и добавляет в очереди образуемые от t числа
     if (t != 1) {
         std::cout << t << ' ';
     }
@@ -17,7 +17,7 @@ void print_and_add(int t, std::queue<int>& q2, std::queue<int>& q3, std::queue<i
 
 int main()
 {
-    std::cout << "Input number:\n";
+    std::cout << "Input number: ";
     int n;
     std::cin >> n;
 
@@ -25,11 +25,7 @@ int main()
     std::queue<int> q3;
     std::queue<int> q5;
 
-
-    q2.push(2);
-    q3.push(3);
-    q5.push(5);
-    /*print_and_add(1, q2,  q3, q5);*/
+    print_and_add(1, q2,  q3, q5);
     int k = 0; //счетчик выведенных чисел
 
     while (k != n) {

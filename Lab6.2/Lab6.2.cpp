@@ -2,9 +2,9 @@
 #include <deque>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <utility>
-#include <cmath>
+#include <algorithm>	//std::min_element()
+#include <utility>		//std::pair, std::make_pair()
+#include <cmath>		//std::atan()
 
 
 bool Palindrome(std::string& str) { //функция вычисления палиндрома
@@ -18,7 +18,8 @@ bool Palindrome(std::string& str) { //функция вычисления пал
 	for (int i = 0; i < str.length() / 2; i++) { //проход по деку
 		if (deq.front() != deq.back()) //если первый и последний элемент не совпадает, значит строка не является палиндромом
 			return false;
-		else {	//если первый и последний элемент не совпадает, удаляем из дека
+		else if (deq.size() != 1){	//если первый и последний элемент не совпадает, удаляем из дека
+			//if нужен, чтобы избежать удаления из пустого стека, если количесвто букв не четное
 			deq.pop_back();
 			deq.pop_front();
 		}
@@ -30,17 +31,17 @@ int vect_mult(std::pair<int, int> a, std::pair<int, int> b, std::pair<int, int> 
 	return ((b.first - a.first) * (c.second - b.second) - (b.second - a.second) * (c.first - b.first));
 }
 
-std::deque<std::pair<int, int>> Graham(std::vector<std::pair<int, int>> cords) {
+std::deque<std::pair<int, int>> Graham(std::vector<std::pair<int, int>> cords) { // вычисление оболочки
 	std::deque<std::pair<int, int>> shell;
 	std::pair<int, int> p0 = *(std::min_element(cords.begin(), cords.end(), [](std::pair<int, int> a, std::pair<int, int> b) { //находим стартовую точку, самая нижня среди левых
 		return (a.first < b.first || (a.first == b.first && a.second < b.second)) ;
 		}));
-	shell.push_back(p0);
-	cords.erase(std::find(cords.begin(), cords.end(), p0));
+	shell.push_back(p0); //добавление опорной точки в дек
+	cords.erase(std::find(cords.begin(), cords.end(), p0)); //удаление из исходного вектора для избежания повторений
 	
 	std::sort(cords.begin(), cords.end(), [p0](std::pair<int, int> a, std::pair<int, int> b) { //сортировка точек через лямбда функцию по величине полярного угла относительно p0
-		float angle_a = std::atan(float(a.second - p0.first) / (a.first - p0.first));
-		float angle_b = std::atan(float(b.second - p0.first) / (b.first - p0.first));
+		float angle_a = std::atan(float(a.second - p0.first) / (a.first - p0.first));	//нахождение полярного угла через арктангенс
+		float angle_b = std::atan(float(b.second - p0.first) / (b.first - p0.first));	//нахождение полярного угла через арктангенс
 		return (angle_a < angle_b);
 		});
 	
@@ -69,7 +70,7 @@ int main()
 	while (true) {
 		std::string str;
 		std::vector<std::pair<int, int>> cords; //vector пар, в которых первое значение - х, а второе - у
-		std::deque<std::pair<int, int>> shell;
+		std::deque<std::pair<int, int>> shell;	//дек точек, входящих во внешнюю оболочку
 		int x, y = 0;
 		int n;
 		int cmd;
