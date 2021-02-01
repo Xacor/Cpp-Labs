@@ -51,7 +51,7 @@ void QuickSort(std::vector<C>& vect, int start, int finish, bool (*Cmp)(C, C)/*�
         QuickSort(vect, left, finish, Cmp); //рекурсивный вызов для правой части
 }
 
-
+template <typename A>
 int main()
 {
     std::vector<Human> a = {
@@ -60,6 +60,14 @@ int main()
         Human("Nikolaev", "Vladislav", 19),
         Human("Petrov", "Victor", 42)
     };
+
+    std::vector<A> sosi;
+    int n;
+    std::cin >> n;
+    for (int i = 0; i < n; i++) {
+        A tmp;
+        sosi.push_back(A);
+    }
 
     std::vector<Human> b = a;
     std::vector<Human> c = a;
