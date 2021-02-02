@@ -43,3 +43,5 @@
 *.app
 
 # End of https://www.toptal.com/developers/gitignore/api/c++
+/.vs/Ryabov_Konstantin_201-351/v16/ipch/AutoPCH/a348544e6bd0d389
+*.opendb
